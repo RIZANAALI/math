@@ -19,7 +19,7 @@ nan_variable = math.nan
 gcd_variable = math.gcd(4,5)
 lcm_variable = math.lcm(3,4)
 print(lcm_variable)  
-
+LOGINANDCLICK
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -133,7 +133,7 @@ def main():
     out_currency = input("Enter tom Currency code:")
     return get_rate(in_currency, out_currency)
 print(main())
-
+#CURRENCYCALCULATOR
 import yfinance as yf
 
 ticker = input("Enter the Ticker:")
@@ -146,7 +146,7 @@ stock_data = yf.download(ticker,start=from_data,end=to_data)
 stock_data.to_html("stock_data.html")
 print("stock data written to stock_data.html")
 
-
+#SCREPEDYNAMIC
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
@@ -178,6 +178,7 @@ def main():
    return clean_text(dynamic_element.text)
 
 print(main())
+#screpeWEBSITE
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
@@ -225,10 +226,47 @@ def get_driver():
 
     driver.get("https://automated.pythonanywhere.com")
     return driver
+CSVMODULE
+#   reader = csv.DictReader(file)
+ #   for row in reader:
+ #       print(row)
 
 
+with open("output.csv",'w') as file:
+    writer = csv.writer(file,delimiter=":" )
+    writer.writerow(['name', 'age', 'city'])
+    writer.writerow(['safwana', '19', 'kannur'])
+    writer.writerow(['rizana','18','kannur'])
+
+with open("dictoutput.csv", 'w') as file:
+    fieldnames = (['name', 'age', 'city'])
+    writer = csv.DictWriter(file, fieldnames=fieldnames)
+    writer.writeheader()
+    writer.writerow({'name':'safwana','age':19, 'city':'kannur'})
+    writer.writerow({'name':'rizana','age':18, 'city':'kannur'})
+
+try:
+    with open('stock_data.csv', 'r') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            print(row)
+except csv.Error as e:
+    print(f'Error reading CSV file: {e}')
+
+CREATEAPI
+from flask import Flask, jsonify
+import requests
+
+topic = 'pizza'
+
+r = requests.get(f'https://newsdata.io/api/1/latest?apikey=pub_544064f4ed63c81c7478f27000f5d3ce1caf&q={topic}')
 
 
-
+app = Flask(__name__)
+@app.route('/')
+def get_api():
+    response = {'result': r.json()}
+    return jsonify(response)
+app.run(port=5000)
 
 
